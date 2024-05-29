@@ -1,36 +1,47 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
-import { CanceledError } from "axios";
+import { AxiosRequestConfig, CanceledError } from "axios";
 
 interface DataList<T> {
   count: number;
   results: T[];
 }
 
-function useData<T>(endpoint: string) {
+function useData<T>(
+  endpoint: string,
+  requestConfig?: AxiosRequestConfig,
+  dependencies?: any[]
+) {
   const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const controller = new AbortController();
+  useEffect(
+    () => {
+      const controller = new AbortController();
 
-    setLoading(true);
+      setData([]); // Resets data array to clear visual remnants
+      setLoading(true);
 
-    apiClient
-      .get<DataList<T>>(endpoint, { signal: controller.signal })
-      .then((res) => {
-        setData(res.data.results);
-        setLoading(false);
-      })
-      .catch((err) => {
-        if (err instanceof CanceledError) return;
-        setError(err.message);
-        setLoading(false);
-      });
+      apiClient
+        .get<DataList<T>>(endpoint, {
+          signal: controller.signal,
+          ...requestConfig,
+        })
+        .then((res) => {
+          setData(res.data.results);
+          setLoading(false);
+        })
+        .catch((err) => {
+          if (err instanceof CanceledError) return;
+          setError(err.message);
+          setLoading(false);
+        });
 
-    return () => controller.abort();
-  }, []);
+      return () => controller.abort();
+    },
+    dependencies ? [...dependencies] : [] // Spread Effect dependencies only if they exist
+  );
 
   return { data, error, isLoading };
 }

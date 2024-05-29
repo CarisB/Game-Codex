@@ -3,9 +3,14 @@ import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 import useGames from "../hooks/useGames";
+import { Genre } from "../hooks/useGenres";
 
-function GameGrid() {
-  const { data: games, error, isLoading } = useGames();
+interface Props {
+  genreFilter: Genre | null;
+}
+
+function GameGrid({ genreFilter }: Props) {
+  const { data: games, error, isLoading } = useGames(genreFilter); // Custom data fetching hook
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   return (
