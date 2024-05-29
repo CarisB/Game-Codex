@@ -22,7 +22,7 @@ interface GameList {
 }
 
 function useGames() {
-  const [gameList, setGameList] = useState<Game[]>([]);
+  const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
 
@@ -34,7 +34,7 @@ function useGames() {
     apiClient
       .get<GameList>("/games", { signal: controller.signal })
       .then((res) => {
-        setGameList(res.data.results);
+        setGames(res.data.results);
         setLoading(false);
       })
       .catch((err) => {
@@ -46,7 +46,7 @@ function useGames() {
     return () => controller.abort();
   }, []);
 
-  return { gameList, error, isLoading };
+  return { games, error, isLoading };
 }
 
 export default useGames;
