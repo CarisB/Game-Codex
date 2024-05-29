@@ -4,18 +4,22 @@ import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 
 function App() {
-  const breakpoints = {
-    base: `"nav" "main"`,
-    lg: `"nav nav" "aside main"`,
-  };
-
   return (
-    <Grid templateAreas={breakpoints}>
+    <Grid
+      templateAreas={{
+        base: `"nav" "main"`,
+        lg: `"nav nav" "aside main"`,
+      }}
+      templateColumns={{
+        base: "1fr",
+        lg: "0.18fr 0.82fr",
+      }}
+    >
       <GridItem area="nav">
         <NavBar />
       </GridItem>
       <Show above="lg">
-        <GridItem area="aside">
+        <GridItem area="aside" padding={5}>
           <GenreList />
         </GridItem>
       </Show>
