@@ -10,10 +10,11 @@ import useGenres, { Genre } from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/img-url";
 
 interface Props {
+  genreFilter: Genre | null;
   onSelectGenre: (genre: Genre) => void;
 }
 
-function GenreList({ onSelectGenre }: Props) {
+function GenreList({ genreFilter, onSelectGenre }: Props) {
   const { data: genres, isLoading, error } = useGenres();
 
   if (error) return null;
@@ -23,7 +24,10 @@ function GenreList({ onSelectGenre }: Props) {
       <List>
         {genres.map((genre) => (
           <ListItem key={genre.id}>
-            <HStack padding={2}>
+            <HStack
+              padding={2}
+              background={genre.id === genreFilter?.id ? "green.100" : "none"}
+            >
               <Image
                 src={getCroppedImageUrl(genre.image_background)}
                 boxSize="3em"
@@ -34,6 +38,9 @@ function GenreList({ onSelectGenre }: Props) {
                 onClick={() => onSelectGenre(genre)}
                 variant="link"
                 fontSize="large"
+                whiteSpace="normal"
+                textAlign="left"
+                textColor={genre.id === genreFilter?.id ? "gray.800" : "white"}
               >
                 {genre.name}
               </Button>
