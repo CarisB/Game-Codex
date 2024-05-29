@@ -4,6 +4,7 @@ import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import { useState } from "react";
 import { Genre } from "./hooks/useGenres";
+import PlatformFilter from "./components/PlatformFilter";
 
 function App() {
   const [genreFilter, setGenreFilter] = useState<Genre | null>(null);
@@ -19,18 +20,19 @@ function App() {
         lg: "0.18fr 0.82fr",
       }}
     >
-      <GridItem area="nav">
+      <GridItem area="nav" padding={10}>
         <NavBar />
       </GridItem>
       <Show above="lg">
-        <GridItem area="aside" padding={5}>
+        <GridItem area="aside" padding={10}>
           <GenreList
             genreFilter={genreFilter}
             onSelectGenre={(genre) => setGenreFilter(genre)}
           />
         </GridItem>
       </Show>
-      <GridItem area="main">
+      <GridItem area="main" padding={10}>
+        <PlatformFilter marginBottom={30} />
         <GameGrid genreFilter={genreFilter} />
       </GridItem>
     </Grid>

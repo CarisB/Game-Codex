@@ -5,6 +5,7 @@ import {
   List,
   ListItem,
   Skeleton,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import useGenres, { Genre } from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/img-url";
@@ -40,7 +41,11 @@ function GenreList({ genreFilter, onSelectGenre }: Props) {
                 fontSize="large"
                 whiteSpace="normal"
                 textAlign="left"
-                textColor={genre.id === genreFilter?.id ? "gray.800" : "white"}
+                textColor={
+                  genre.id === genreFilter?.id
+                    ? "gray.800"
+                    : useColorModeValue("primary.dark", "primary.light")
+                }
               >
                 {genre.name}
               </Button>
