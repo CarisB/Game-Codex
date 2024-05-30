@@ -1,13 +1,16 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
-import usePlatforms from "../hooks/usePlatforms";
+import usePlatforms, { Platform } from "../hooks/usePlatforms";
+import { useState } from "react";
 
 interface Props {
+  onSelectPlatform: (platform: Platform) => void;
   marginBottom?: number;
 }
 
-function PlatformFilter({ marginBottom }: Props) {
+function PlatformFilter({ onSelectPlatform, marginBottom }: Props) {
   const { data: platforms, error } = usePlatforms();
+  const [platformName, setPlatformName] = useState("Filter by Platform");
 
   if (error) return null;
 
@@ -18,11 +21,19 @@ function PlatformFilter({ marginBottom }: Props) {
         rightIcon={<BsChevronDown />}
         marginBottom={marginBottom}
       >
-        Filter by Platform
+        {platformName}
       </MenuButton>
       <MenuList>
         {platforms.map((platform) => (
-          <MenuItem>{platform.name}</MenuItem>
+          <MenuItem
+            key={platform.id}
+            onClick={() => {
+              setPlatformName(platform.name);
+              onSelectPlatform(platform);
+            }}
+          >
+            {platform.name}
+          </MenuItem>
         ))}
       </MenuList>
     </Menu>

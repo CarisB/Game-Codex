@@ -42,9 +42,7 @@ function GenreList({ genreFilter, onSelectGenre }: Props) {
                 whiteSpace="normal"
                 textAlign="left"
                 textColor={
-                  genre.id === genreFilter?.id
-                    ? "gray.800"
-                    : useColorModeValue("primary.dark", "primary.light")
+                  genre.id === genreFilter?.id ? "gray.800" : "primary.light"
                 }
               >
                 {genre.name}

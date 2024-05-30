@@ -4,13 +4,19 @@ import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 import useGames from "../hooks/useGames";
 import { Genre } from "../hooks/useGenres";
+import { Platform } from "../hooks/usePlatforms";
 
 interface Props {
   genreFilter: Genre | null;
+  platformFilter: Platform | null;
 }
 
-function GameGrid({ genreFilter }: Props) {
-  const { data: games, error, isLoading } = useGames(genreFilter); // Custom data fetching hook
+function GameGrid({ genreFilter, platformFilter }: Props) {
+  const {
+    data: games,
+    error,
+    isLoading,
+  } = useGames(genreFilter, platformFilter); // Custom data fetching hook
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   return (
