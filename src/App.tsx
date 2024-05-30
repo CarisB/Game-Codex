@@ -26,7 +26,7 @@ function App() {
         lg: "0.18fr 0.82fr",
       }}
     >
-      <GridItem area="nav" padding={10}>
+      <GridItem area="nav" paddingTop={10} paddingX={10}>
         <NavBar />
       </GridItem>
       <Show above="lg">
