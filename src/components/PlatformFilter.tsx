@@ -5,10 +5,9 @@ import { useState } from "react";
 
 interface Props {
   onSelectPlatform: (platform: Platform) => void;
-  marginBottom?: number;
 }
 
-function PlatformFilter({ onSelectPlatform, marginBottom }: Props) {
+function PlatformFilter({ onSelectPlatform }: Props) {
   const { data: platforms, error } = usePlatforms();
   const [platformName, setPlatformName] = useState("Filter by Platform");
 
@@ -16,11 +15,7 @@ function PlatformFilter({ onSelectPlatform, marginBottom }: Props) {
 
   return (
     <Menu>
-      <MenuButton
-        as={Button}
-        rightIcon={<BsChevronDown />}
-        marginBottom={marginBottom}
-      >
+      <MenuButton as={Button} rightIcon={<BsChevronDown />}>
         {platformName}
       </MenuButton>
       <MenuList>
