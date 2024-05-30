@@ -18,6 +18,7 @@ function useGames(gameQuery: GameQuery) {
         genres: gameQuery.genre?.id,
         parent_platforms: gameQuery.platform?.id,
         ordering: gameQuery.sort,
+        search: gameQuery.search,
       },
     },
     [gameQuery]
