@@ -5,7 +5,6 @@ import {
   List,
   ListItem,
   Skeleton,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import useGenres, { Genre } from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/img-url";

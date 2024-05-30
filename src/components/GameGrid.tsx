@@ -3,20 +3,14 @@ import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 import useGames from "../hooks/useGames";
-import { Genre } from "../hooks/useGenres";
-import { Platform } from "../hooks/usePlatforms";
+import { GameQuery } from "../App";
 
 interface Props {
-  genreFilter: Genre | null;
-  platformFilter: Platform | null;
+  gameQuery: GameQuery;
 }
 
-function GameGrid({ genreFilter, platformFilter }: Props) {
-  const {
-    data: games,
-    error,
-    isLoading,
-  } = useGames(genreFilter, platformFilter); // Custom data fetching hook
+function GameGrid({ gameQuery }: Props) {
+  const { data: games, error, isLoading } = useGames(gameQuery); // Custom data fetching hook
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   return (
