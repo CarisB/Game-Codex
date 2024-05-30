@@ -11,7 +11,7 @@ import getCroppedImageUrl from "../services/img-url";
 
 interface Props {
   genreFilter: Genre | null;
-  onSelectGenre: (genre: Genre) => void;
+  onSelectGenre: (genre: Genre | null) => void;
 }
 
 function GenreList({ genreFilter, onSelectGenre }: Props) {
@@ -41,7 +41,12 @@ function GenreList({ genreFilter, onSelectGenre }: Props) {
                 marginX={2}
               />
               <Button
-                onClick={() => onSelectGenre(genre)}
+                onClick={() =>
+                  // Resets genre filter if same genre is selected twice
+                  genre === genreFilter
+                    ? onSelectGenre(null)
+                    : onSelectGenre(genre)
+                }
                 variant="link"
                 fontSize="large"
                 whiteSpace="normal"
