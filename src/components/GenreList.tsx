@@ -17,6 +17,10 @@ interface Props {
 function GenreList({ genreFilter, onSelectGenre }: Props) {
   const { data: genres, isLoading, error } = useGenres();
 
+  const isMatch = (genre: Genre): boolean => {
+    return genre.id === genreFilter?.id;
+  };
+
   if (error) return null;
 
   return (
@@ -26,7 +30,9 @@ function GenreList({ genreFilter, onSelectGenre }: Props) {
           <ListItem key={genre.id}>
             <HStack
               padding={2}
-              background={genre.id === genreFilter?.id ? "green.100" : "none"}
+              borderRadius={10}
+              objectFit="cover"
+              background={isMatch(genre) ? "green.100" : "none"}
             >
               <Image
                 src={getCroppedImageUrl(genre.image_background)}
@@ -40,9 +46,7 @@ function GenreList({ genreFilter, onSelectGenre }: Props) {
                 fontSize="large"
                 whiteSpace="normal"
                 textAlign="left"
-                textColor={
-                  genre.id === genreFilter?.id ? "gray.800" : "primary.light"
-                }
+                textColor={isMatch(genre) ? "gray.800" : "currentcolor"}
               >
                 {genre.name}
               </Button>
