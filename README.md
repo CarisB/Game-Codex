@@ -6,3 +6,6 @@ A simple game catalog web app developed using:
 - Vite
 - Chakra UI
 - RAWG API
+
+Public build:
+https://game-codex-pi.vercel.app/
