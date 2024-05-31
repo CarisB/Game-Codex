@@ -54,7 +54,10 @@ function App() {
             onSortSelected={(sort) => setGameQuery({ ...gameQuery, sort })}
           />
         </HStack>
-        <GameGrid gameQuery={gameQuery} />
+        <GameGrid
+          gameQuery={gameQuery}
+          onReload={() => setGameQuery({ ...gameQuery })}
+        />
       </GridItem>
     </Grid>
   );

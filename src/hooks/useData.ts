@@ -21,6 +21,7 @@ function useData<T>(
       const controller = new AbortController();
 
       setData([]); // Resets data array to clear visual remnants
+      setError(""); // Resets error with each new request
       setLoading(true);
 
       apiClient
