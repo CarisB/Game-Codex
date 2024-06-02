@@ -36,7 +36,7 @@ function App() {
           />
         </GridItem>
         <Show above="lg">
-          <GridItem area="aside" minW={"18em"}>
+          <GridItem area="aside" minW={250} paddingRight={10}>
             <GenreList
               genreFilterId={gameQuery.genre_id}
               onSelectGenre={(genreId) =>
