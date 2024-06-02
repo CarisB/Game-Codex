@@ -58,10 +58,7 @@ function App() {
               onSortSelected={(sort) => setGameQuery({ ...gameQuery, sort })}
             />
           </Wrap>
-          <GameGrid
-            gameQuery={gameQuery}
-            onReload={() => setGameQuery({ ...gameQuery })}
-          />
+          <GameGrid gameQuery={gameQuery} />
         </GridItem>
       </Grid>
       <ScrollToTop />

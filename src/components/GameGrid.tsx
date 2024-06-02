@@ -18,16 +18,16 @@ import GameCardSkeleton from "./GameCardSkeleton";
 
 interface Props {
   gameQuery: GameQuery;
-  onReload: () => void;
 }
 
-function GameGrid({ gameQuery, onReload }: Props) {
+function GameGrid({ gameQuery }: Props) {
   const {
     data: games,
     error,
     isLoading,
     hasNextPage,
     fetchNextPage,
+    refetch,
   } = useGames(gameQuery); // Custom data fetching hook
 
   // Number of games fetched thus far -- necessary for InfiniteScroll
@@ -43,7 +43,7 @@ function GameGrid({ gameQuery, onReload }: Props) {
           <Badge fontSize={"1.2em"} colorScheme="red" marginBottom={10}>
             {error.message}
           </Badge>
-          <HStack as={Button} onClick={onReload}>
+          <HStack as={Button} onClick={() => refetch()}>
             <IoReloadCircle size={"3em"} />
             <Text>Try Again</Text>
           </HStack>
