@@ -1,4 +1,4 @@
-import { HStack, Heading, Text } from "@chakra-ui/react";
+import { Heading, Text, Wrap } from "@chakra-ui/react";
 import { useState } from "react";
 import { GameQuery } from "../App";
 
@@ -18,12 +18,12 @@ function GridHeading({ gameQuery }: Props) {
     setSearch(gameQuery.search);
 
   return (
-    <HStack as={Heading} fontSize={"5xl"} marginBottom={10}>
+    <Wrap as={Heading} fontSize={"5xl"} marginBottom={10}>
       <Text>{heading}</Text>
       <Text color="blue.500" fontWeight={300} fontStyle={"italic"}>
         {gameQuery.search && ` (searching: "${search}")`}
       </Text>
-    </HStack>
+    </Wrap>
   );
 }
 
