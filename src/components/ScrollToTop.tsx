@@ -7,7 +7,9 @@ function ScrollToTop() {
   const [isMobile] = useMediaQuery("(max-width: 62em)");
 
   const activeThreshold = 1000; // When should the button be active?
-  const mediaProps = isMobile ? { right: 10 } : { left: 10 }; // Different props depending on size
+  const mediaProps = isMobile
+    ? { right: 5, bottom: 5 }
+    : { left: 10, bottom: 10 }; // Different props depending on size
 
   useEffect(() => {
     const handleScrollButtonVisibility = () => {
@@ -31,7 +33,6 @@ function ScrollToTop() {
           colorScheme="green"
           leftIcon={<BiSolidUpArrowAlt />}
           position={"fixed"}
-          bottom={10}
           zIndex={1}
           {...mediaProps}
         >
