@@ -1,15 +1,23 @@
 import { Heading, Text, Wrap } from "@chakra-ui/react";
 import { useState } from "react";
 import { GameQuery } from "../App";
+import useGenres from "../hooks/useGenres";
+import usePlatforms from "../hooks/usePlatforms";
 
 interface Props {
   gameQuery: GameQuery;
 }
 
 function GridHeading({ gameQuery }: Props) {
-  const heading = `${gameQuery.platform?.name || ""} ${
-    gameQuery.genre?.name || ""
-  } Games`;
+  const { data: genres } = useGenres();
+  const genre = genres?.results.find((g) => g.id === gameQuery.genre_id);
+
+  const { data: platforms } = usePlatforms();
+  const platform = platforms?.results.find(
+    (p) => p.id === gameQuery.platform_id
+  );
+
+  const heading = `${platform?.name || ""} ${genre?.name || ""} Games`;
 
   const [search, setSearch] = useState("");
 

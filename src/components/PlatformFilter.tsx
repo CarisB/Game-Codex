@@ -1,10 +1,10 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
-import { BsChevronDown } from "react-icons/bs";
-import usePlatforms, { Platform } from "../hooks/usePlatforms";
 import { useState } from "react";
+import { BsChevronDown } from "react-icons/bs";
+import usePlatforms from "../hooks/usePlatforms";
 
 interface Props {
-  onSelectPlatform: (platform: Platform) => void;
+  onSelectPlatform: (platform: number | null) => void;
 }
 
 function PlatformFilter({ onSelectPlatform }: Props) {
@@ -24,7 +24,7 @@ function PlatformFilter({ onSelectPlatform }: Props) {
             key={platform.id}
             onClick={() => {
               setPlatformName(platform.name);
-              onSelectPlatform(platform);
+              onSelectPlatform(platform.id);
             }}
           >
             {platform.name}
