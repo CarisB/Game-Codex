@@ -1,14 +1,14 @@
-import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
-import NavBar from "./components/NavBar";
+import { Box, Grid, GridItem, Show, Wrap } from "@chakra-ui/react";
+import { useState } from "react";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
-import { useState } from "react";
-import { Genre } from "./hooks/useGenres";
-import PlatformFilter from "./components/PlatformFilter";
-import { Platform } from "./hooks/usePlatforms";
-import SortSelector from "./components/SortSelector";
 import GridHeading from "./components/GridHeading";
+import NavBar from "./components/NavBar";
+import PlatformFilter from "./components/PlatformFilter";
 import ScrollToTop from "./components/ScrollToTop";
+import SortSelector from "./components/SortSelector";
+import { Genre } from "./hooks/useGenres";
+import { Platform } from "./hooks/usePlatforms";
 
 export interface GameQuery {
   genre: Genre | null;
@@ -21,7 +21,7 @@ function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
   return (
-    <>
+    <Box padding={10}>
       <Grid
         templateAreas={{
           base: `"nav" "main"`,
@@ -32,22 +32,22 @@ function App() {
           lg: "0.12fr 1fr",
         }}
       >
-        <GridItem area="nav" paddingTop={10} paddingX={10}>
+        <GridItem area="nav" marginBottom={10}>
           <NavBar
             onSearch={(search) => setGameQuery({ ...gameQuery, search })}
           />
         </GridItem>
         <Show above="lg">
-          <GridItem area="aside" padding={10} minW={"18em"}>
+          <GridItem area="aside" minW={"18em"}>
             <GenreList
               genreFilter={gameQuery.genre}
               onSelectGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
             />
           </GridItem>
         </Show>
-        <GridItem area="main" padding={10}>
+        <GridItem area="main" minW={0}>
           <GridHeading gameQuery={gameQuery} />
-          <HStack marginBottom={30}>
+          <Wrap marginBottom={30}>
             <PlatformFilter
               onSelectPlatform={(platform) =>
                 setGameQuery({ ...gameQuery, platform })
@@ -57,7 +57,7 @@ function App() {
               sort={gameQuery.sort}
               onSortSelected={(sort) => setGameQuery({ ...gameQuery, sort })}
             />
-          </HStack>
+          </Wrap>
           <GameGrid
             gameQuery={gameQuery}
             onReload={() => setGameQuery({ ...gameQuery })}
@@ -65,7 +65,7 @@ function App() {
         </GridItem>
       </Grid>
       <ScrollToTop />
-    </>
+    </Box>
   );
 }
 

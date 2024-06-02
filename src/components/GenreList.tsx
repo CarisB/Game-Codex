@@ -29,7 +29,7 @@ function GenreList({ genreFilter, onSelectGenre }: Props) {
         {genres?.results.map((genre) => (
           <ListItem key={genre.id}>
             <HStack
-              padding={2}
+              paddingY={2}
               borderRadius={10}
               objectFit="cover"
               background={isMatch(genre) ? "green.100" : "none"}
