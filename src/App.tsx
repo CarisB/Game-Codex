@@ -8,6 +8,7 @@ import PlatformFilter from "./components/PlatformFilter";
 import { Platform } from "./hooks/usePlatforms";
 import SortSelector from "./components/SortSelector";
 import GridHeading from "./components/GridHeading";
+import ScrollToTop from "./components/ScrollToTop";
 
 export interface GameQuery {
   genre: Genre | null;
@@ -20,46 +21,51 @@ function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
   return (
-    <Grid
-      templateAreas={{
-        base: `"nav" "main"`,
-        lg: `"nav nav" "aside main"`,
-      }}
-      templateColumns={{
-        base: "1fr",
-        lg: "0.12fr 1fr",
-      }}
-    >
-      <GridItem area="nav" paddingTop={10} paddingX={10}>
-        <NavBar onSearch={(search) => setGameQuery({ ...gameQuery, search })} />
-      </GridItem>
-      <Show above="lg">
-        <GridItem area="aside" padding={10} minW={"18em"}>
-          <GenreList
-            genreFilter={gameQuery.genre}
-            onSelectGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
+    <>
+      <Grid
+        templateAreas={{
+          base: `"nav" "main"`,
+          lg: `"nav nav" "aside main"`,
+        }}
+        templateColumns={{
+          base: "1fr",
+          lg: "0.12fr 1fr",
+        }}
+      >
+        <GridItem area="nav" paddingTop={10} paddingX={10}>
+          <NavBar
+            onSearch={(search) => setGameQuery({ ...gameQuery, search })}
           />
         </GridItem>
-      </Show>
-      <GridItem area="main" padding={10}>
-        <GridHeading gameQuery={gameQuery} />
-        <HStack marginBottom={30}>
-          <PlatformFilter
-            onSelectPlatform={(platform) =>
-              setGameQuery({ ...gameQuery, platform })
-            }
+        <Show above="lg">
+          <GridItem area="aside" padding={10} minW={"18em"}>
+            <GenreList
+              genreFilter={gameQuery.genre}
+              onSelectGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
+            />
+          </GridItem>
+        </Show>
+        <GridItem area="main" padding={10}>
+          <GridHeading gameQuery={gameQuery} />
+          <HStack marginBottom={30}>
+            <PlatformFilter
+              onSelectPlatform={(platform) =>
+                setGameQuery({ ...gameQuery, platform })
+              }
+            />
+            <SortSelector
+              sort={gameQuery.sort}
+              onSortSelected={(sort) => setGameQuery({ ...gameQuery, sort })}
+            />
+          </HStack>
+          <GameGrid
+            gameQuery={gameQuery}
+            onReload={() => setGameQuery({ ...gameQuery })}
           />
-          <SortSelector
-            sort={gameQuery.sort}
-            onSortSelected={(sort) => setGameQuery({ ...gameQuery, sort })}
-          />
-        </HStack>
-        <GameGrid
-          gameQuery={gameQuery}
-          onReload={() => setGameQuery({ ...gameQuery })}
-        />
-      </GridItem>
-    </Grid>
+        </GridItem>
+      </Grid>
+      <ScrollToTop />
+    </>
   );
 }
 
