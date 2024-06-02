@@ -65,8 +65,8 @@ function GameGrid({ gameQuery, onReload }: Props) {
               <GameCardSkeleton key={skeleton} />
             </GameCardContainer>
           ))}
-        {games?.pages.map((page) => (
-          <React.Fragment>
+        {games?.pages.map((page, index) => (
+          <React.Fragment key={index}>
             {page.results.map((game) => (
               <GameCardContainer key={game.id}>
                 <GameCard key={game.id} game={game} />
