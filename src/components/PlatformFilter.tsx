@@ -19,7 +19,7 @@ function PlatformFilter({ onSelectPlatform }: Props) {
         {platformName}
       </MenuButton>
       <MenuList>
-        {platforms.map((platform) => (
+        {platforms?.results.map((platform) => (
           <MenuItem
             key={platform.id}
             onClick={() => {

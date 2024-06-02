@@ -26,7 +26,7 @@ function GenreList({ genreFilter, onSelectGenre }: Props) {
   return (
     <Skeleton height="100%" isLoaded={!isLoading}>
       <List>
-        {genres.map((genre) => (
+        {genres?.results.map((genre) => (
           <ListItem key={genre.id}>
             <HStack
               padding={2}

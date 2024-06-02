@@ -27,7 +27,7 @@ function GameGrid({ gameQuery, onReload }: Props) {
       error && (
         <VStack>
           <Badge fontSize={"1.2em"} colorScheme="red" marginBottom={10}>
-            {error}
+            {error.message}
           </Badge>
           <HStack as={Button} onClick={onReload}>
             <IoReloadCircle size={"3em"} />
@@ -45,7 +45,7 @@ function GameGrid({ gameQuery, onReload }: Props) {
             <GameCardSkeleton key={skeleton} />
           </GameCardContainer>
         ))}
-      {games.map((game) => (
+      {games?.results.map((game) => (
         <GameCardContainer key={game.id}>
           <GameCard key={game.id} game={game} />
         </GameCardContainer>
