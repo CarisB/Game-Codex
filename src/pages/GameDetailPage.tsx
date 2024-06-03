@@ -1,5 +1,6 @@
 import { Heading, Spinner, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
+import parse from "html-react-parser";
 import useGame from "../hooks/useGame";
 
 function GameDetailPage() {
@@ -12,7 +13,7 @@ function GameDetailPage() {
   return (
     <>
       <Heading>{game.name}</Heading>
-      <Text>{game.description}</Text>
+      <Text>{parse(game.description)}</Text>
     </>
   );
 }
