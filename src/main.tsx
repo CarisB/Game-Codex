@@ -6,6 +6,7 @@ import theme from "./theme";
 import "./index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Analytics } from "@vercel/analytics/react";
 
 const queryClient = new QueryClient();
 
@@ -18,5 +19,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         {import.meta.env.DEV ? <ReactQueryDevtools /> : ""}
       </QueryClientProvider>
     </ChakraProvider>
+    <Analytics />
   </React.StrictMode>
 );
