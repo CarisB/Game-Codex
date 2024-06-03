@@ -26,7 +26,7 @@ function HomePage() {
         </Show>
         <GridItem area="main" minW={0}>
           <GridHeading />
-          <Wrap marginBottom={30}>
+          <Wrap marginY={10}>
             <PlatformFilter />
             <SortSelector />
           </Wrap>

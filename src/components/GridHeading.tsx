@@ -22,7 +22,7 @@ function GridHeading() {
   if (search_text && search_text !== searchText) setSearchText(search_text);
 
   return (
-    <Wrap as={Heading} fontSize={"5xl"} marginBottom={10}>
+    <Wrap as={Heading} fontSize={"5xl"}>
       <Text>{heading}</Text>
       <Text color="blue.500" fontWeight={300} fontStyle={"italic"}>
         {search_text && ` (searching: "${searchText}")`}
