@@ -1,6 +1,6 @@
-import { Heading, Spinner, Text } from "@chakra-ui/react";
-import { useParams } from "react-router-dom";
+import { Box, Heading, Spinner } from "@chakra-ui/react";
 import parse from "html-react-parser";
+import { useParams } from "react-router-dom";
 import useGame from "../hooks/useGame";
 
 function GameDetailPage() {
@@ -11,10 +11,18 @@ function GameDetailPage() {
   if (error || !game) throw error;
 
   return (
-    <>
-      <Heading>{game.name}</Heading>
-      <Text>{parse(game.description)}</Text>
-    </>
+    <div>
+      <Heading marginBottom={30}>{game.name}</Heading>
+      <Box
+        id="gameDescription"
+        width="65%"
+        height={200}
+        overflow={"hidden"}
+        className="transparent-gradient"
+      >
+        {parse(game.description)}
+      </Box>
+    </div>
   );
 }
 

@@ -1,3 +1,10 @@
 form {
   width: 100%;
 }
+
+.transparent-gradient {
+  display: block;
+  color: transparent;
+  background: linear-gradient(to bottom, white, transparent);
+  background-clip: text;
+}
