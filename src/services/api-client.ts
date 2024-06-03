@@ -25,6 +25,13 @@ class APIClient<T> {
       .get<DataList<T>>(this.endpoint, config)
       .then((res) => res.data);
   };
+
+  get = (id: number | string) => {
+    // id is a union to account for either id or slug
+    return axiosInstance
+      .get<T>(this.endpoint + "/" + id)
+      .then((res) => res.data);
+  };
 }
 
 export default APIClient;
