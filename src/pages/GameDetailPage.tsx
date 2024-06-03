@@ -1,4 +1,4 @@
-import { Box, Heading, Spinner } from "@chakra-ui/react";
+import { Box, Container, Heading, SimpleGrid, Spinner } from "@chakra-ui/react";
 import parse from "html-react-parser";
 import { useParams } from "react-router-dom";
 import GameAttributes from "../components/GameAttributes";
@@ -14,21 +14,25 @@ function GameDetailPage() {
   if (error || !game) throw error;
 
   return (
-    <div>
-      <Heading marginBottom={30}>{game.name}</Heading>
-      <Box
-        id="gameDescription"
-        width="65%"
-        height={200}
-        overflow={"hidden"}
-        className="transparent-gradient"
-      >
-        {parse(game.description)}
-      </Box>
-      <GameAttributes game={game} />
-      <GameTrailer gameId={game.id} />
-      <GameScreenshots gameId={game.id} />
-    </div>
+    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
+      <Container>
+        <Heading marginBottom={30}>{game.name}</Heading>
+        <Box
+          id="gameDescription"
+          height={200}
+          overflow={"hidden"}
+          className="transparent-gradient"
+        >
+          {parse(game.description)}
+        </Box>
+        <GameAttributes game={game} />
+      </Container>
+      <Container>
+        <GameTrailer gameId={game.id} />
+        <Box marginBottom={5} />
+        <GameScreenshots gameId={game.id} />
+      </Container>
+    </SimpleGrid>
   );
 }
 
