@@ -1,6 +1,7 @@
 import { Box, Heading, Spinner } from "@chakra-ui/react";
 import parse from "html-react-parser";
 import { useParams } from "react-router-dom";
+import GameAttributes from "../components/GameAttributes";
 import useGame from "../hooks/useGame";
 
 function GameDetailPage() {
@@ -22,6 +23,7 @@ function GameDetailPage() {
       >
         {parse(game.description)}
       </Box>
+      <GameAttributes game={game} />
     </div>
   );
 }
