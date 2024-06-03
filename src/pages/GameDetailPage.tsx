@@ -3,6 +3,7 @@ import parse from "html-react-parser";
 import { useParams } from "react-router-dom";
 import GameAttributes from "../components/GameAttributes";
 import useGame from "../hooks/useGame";
+import GameTrailer from "../components/GameTrailer";
 
 function GameDetailPage() {
   const { slug } = useParams();
@@ -24,6 +25,7 @@ function GameDetailPage() {
         {parse(game.description)}
       </Box>
       <GameAttributes game={game} />
+      <GameTrailer gameId={game.id} />
     </div>
   );
 }
