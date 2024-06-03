@@ -1,5 +1,4 @@
 import { Box, Grid, GridItem, Show, Wrap } from "@chakra-ui/react";
-import { useState } from "react";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import GridHeading from "./components/GridHeading";
@@ -8,16 +7,7 @@ import PlatformFilter from "./components/PlatformFilter";
 import ScrollToTop from "./components/ScrollToTop";
 import SortSelector from "./components/SortSelector";
 
-export interface GameQuery {
-  genre_id: number | null;
-  platform_id: number | null;
-  sort: string;
-  search: string;
-}
-
 function App() {
-  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
-
   return (
     <Box padding={10}>
       <Grid
@@ -31,34 +21,20 @@ function App() {
         }}
       >
         <GridItem area="nav" marginBottom={10}>
-          <NavBar
-            onSearch={(search) => setGameQuery({ ...gameQuery, search })}
-          />
+          <NavBar />
         </GridItem>
         <Show above="lg">
           <GridItem area="aside" minW={250} paddingRight={10}>
-            <GenreList
-              genreFilterId={gameQuery.genre_id}
-              onSelectGenre={(genreId) =>
-                setGameQuery({ ...gameQuery, genre_id: genreId })
-              }
-            />
+            <GenreList />
           </GridItem>
         </Show>
         <GridItem area="main" minW={0}>
-          <GridHeading gameQuery={gameQuery} />
+          <GridHeading />
           <Wrap marginBottom={30}>
-            <PlatformFilter
-              onSelectPlatform={(platformId) =>
-                setGameQuery({ ...gameQuery, platform_id: platformId })
-              }
-            />
-            <SortSelector
-              sort={gameQuery.sort}
-              onSortSelected={(sort) => setGameQuery({ ...gameQuery, sort })}
-            />
+            <PlatformFilter />
+            <SortSelector />
           </Wrap>
-          <GameGrid gameQuery={gameQuery} />
+          <GameGrid />
         </GridItem>
       </Grid>
       <ScrollToTop />

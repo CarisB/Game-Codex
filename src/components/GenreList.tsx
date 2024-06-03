@@ -6,19 +6,17 @@ import {
   ListItem,
   Skeleton,
 } from "@chakra-ui/react";
+import useGameQueryStore from "../gameQueryStore";
 import useGenres from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/img-url";
 
-interface Props {
-  genreFilterId: number | null;
-  onSelectGenre: (genre: number | null) => void;
-}
-
-function GenreList({ genreFilterId, onSelectGenre }: Props) {
+function GenreList() {
+  const genre_id = useGameQueryStore((s) => s.gameQuery.genre_id);
+  const setGenreId = useGameQueryStore((s) => s.setGenreId);
   const { data: genres, isLoading, error } = useGenres();
 
   const isMatch = (genreId: number | null): boolean => {
-    return genreId === genreFilterId;
+    return genreId === genre_id;
   };
 
   if (error) return null;
@@ -43,9 +41,9 @@ function GenreList({ genreFilterId, onSelectGenre }: Props) {
               <Button
                 onClick={() =>
                   // Resets genre filter if same genre is selected twice
-                  genre.id === genreFilterId
-                    ? onSelectGenre(null)
-                    : onSelectGenre(genre.id)
+                  genre.id === genre_id
+                    ? setGenreId(null)
+                    : setGenreId(genre.id)
                 }
                 variant="link"
                 fontSize="large"

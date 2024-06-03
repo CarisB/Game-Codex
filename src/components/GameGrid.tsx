@@ -10,17 +10,12 @@ import {
 import React from "react";
 import { IoReloadCircle } from "react-icons/io5";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { GameQuery } from "../App";
 import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardContainer from "./GameCardContainer";
 import GameCardSkeleton from "./GameCardSkeleton";
 
-interface Props {
-  gameQuery: GameQuery;
-}
-
-function GameGrid({ gameQuery }: Props) {
+function GameGrid() {
   const {
     data: games,
     error,
@@ -28,7 +23,7 @@ function GameGrid({ gameQuery }: Props) {
     hasNextPage,
     fetchNextPage,
     refetch,
-  } = useGames(gameQuery); // Custom data fetching hook
+  } = useGames(); // Custom data fetching hook
 
   // Number of games fetched thus far -- necessary for InfiniteScroll
   const fetchedGamesCount =

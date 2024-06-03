@@ -3,17 +3,13 @@ import logo from "../assets/logo.svg";
 import ColorModeSwitch from "./ColorModeSwitch";
 import SearchBar from "./SearchBar";
 
-interface Props {
-  onSearch: (search: string) => void;
-}
-
-function NavBar({ onSearch }: Props) {
+function NavBar() {
   const [isMobile] = useMediaQuery("(max-width: 46em)");
 
   return (
     <HStack spacing={10}>
       <Image src={logo} boxSize="60px" />
-      <SearchBar onSearch={onSearch} />
+      <SearchBar />
       {!isMobile && <ColorModeSwitch />}
     </HStack>
   );
