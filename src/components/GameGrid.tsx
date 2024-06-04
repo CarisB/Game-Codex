@@ -52,6 +52,7 @@ function GameGrid() {
       hasMore={hasNextPage}
       next={() => fetchNextPage()}
       loader={<Spinner />}
+      style={{ overflow: "visible" }}
     >
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4, "2xl": 5 }} gap={3}>
         {isLoading &&
