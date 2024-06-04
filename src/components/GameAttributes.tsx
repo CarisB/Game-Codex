@@ -21,6 +21,7 @@ function GameAttributes({ game }: Props) {
             <Text key={genre.id}>{genre.name}</Text>
           ))}
         </DefinitionItem>
+        <DefinitionItem term="Release Date">{game.released}</DefinitionItem>
       </VStack>
       <VStack align={"normal"}>
         <DefinitionItem term="Metascore">
@@ -30,6 +31,11 @@ function GameAttributes({ game }: Props) {
           {game.publishers?.map((publisher) => (
             <Text key={publisher.id}>{publisher.name}</Text>
           ))}
+        </DefinitionItem>
+        <DefinitionItem term="Website">
+          <a href={game.website} target="_blank" rel="noreferrer noopener">
+            <u>{game.website}</u>
+          </a>
         </DefinitionItem>
       </VStack>
     </SimpleGrid>

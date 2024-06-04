@@ -9,7 +9,9 @@ export default interface Game {
   description: string;
   genres: Genre[];
   publishers: Publisher[];
+  released: string;
+  metacritic: number;
   background_image: string;
   parent_platforms: { platform: Platform }[];
-  metacritic: number;
+  website: string;
 }
