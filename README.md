@@ -1,11 +1,14 @@
 # GameCodex
 
-A simple game catalog web app developed using:
+A game catalog demo app developed using:
 
-- React.js
+- React.js (TypeScript)
 - Vite
 - Chakra UI
 - RAWG API
+- React Query
+- React Router
+- Zustand
 
 Public build:
 https://game-codex-pi.vercel.app/
