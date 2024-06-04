@@ -6,8 +6,8 @@ function SortSelector() {
   const sortOrders = [
     { value: "", label: "Relevance" },
     { value: "name", label: "Name" },
-    { value: "-rating", label: "Steam Rating" },
     { value: "-metacritic", label: "Metacritic Rating" },
+    { value: "-rating", label: "User Rating" },
     { value: "released", label: "Release Date" },
     { value: "added", label: "Date Added" },
   ];
