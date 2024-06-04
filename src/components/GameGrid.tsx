@@ -10,6 +10,7 @@ import {
 import React from "react";
 import { IoReloadCircle } from "react-icons/io5";
 import InfiniteScroll from "react-infinite-scroll-component";
+import useBackgroundImage from "../hooks/useBackgroundImage";
 import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardContainer from "./GameCardContainer";
@@ -24,6 +25,9 @@ function GameGrid() {
     fetchNextPage,
     refetch,
   } = useGames(); // Custom data fetching hook
+
+  const first = games?.pages[0].results[0];
+  useBackgroundImage(first);
 
   // Number of games fetched thus far -- necessary for InfiniteScroll
   const fetchedGamesCount =
