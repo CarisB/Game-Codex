@@ -15,12 +15,12 @@ function GameDetailPage() {
 
   return (
     <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
-      <Container>
+      <Container minW={"85%"}>
         <Heading marginBottom={30}>{game.name}</Heading>
         <GameDescription game={game} />
         <GameAttributes game={game} />
       </Container>
-      <Container>
+      <Container minW={"85%"}>
         <GameTrailer gameId={game.id} />
         <Box marginBottom={5} />
         <GameScreenshots gameId={game.id} />
