@@ -19,7 +19,7 @@ function GameAttributes({ game }: Props) {
         <CriticScore score={game.metacritic} />
       </DefinitionItem>
       <DefinitionItem term="Genres">
-        {game.genres.map((genre) => (
+        {game.genres?.map((genre) => (
           <Text key={genre.id}>{genre.name}</Text>
         ))}
       </DefinitionItem>

@@ -1,10 +1,10 @@
 import { Box, Container, Heading, SimpleGrid, Spinner } from "@chakra-ui/react";
-import parse from "html-react-parser";
 import { useParams } from "react-router-dom";
 import GameAttributes from "../components/GameAttributes";
 import useGame from "../hooks/useGame";
 import GameTrailer from "../components/GameTrailer";
 import GameScreenshots from "../components/GameScreenshots";
+import GameDescription from "../components/GameDescription";
 
 function GameDetailPage() {
   const { slug } = useParams();
@@ -17,14 +17,7 @@ function GameDetailPage() {
     <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
       <Container>
         <Heading marginBottom={30}>{game.name}</Heading>
-        <Box
-          id="gameDescription"
-          height={200}
-          overflow={"hidden"}
-          className="transparent-gradient"
-        >
-          {parse(game.description)}
-        </Box>
+        <GameDescription game={game} />
         <GameAttributes game={game} />
       </Container>
       <Container>
