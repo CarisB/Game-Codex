@@ -1,4 +1,4 @@
-import { Box, Button, useBoolean } from "@chakra-ui/react";
+import { Box, Button, useBoolean, useColorModeValue } from "@chakra-ui/react";
 import parse from "html-react-parser";
 import { BiChevronsDown, BiChevronsUp } from "react-icons/bi";
 import Game from "../entities/Game";
@@ -9,6 +9,10 @@ interface Props {
 
 function GameDescription({ game }: Props) {
   const [isExpanded, { toggle }] = useBoolean(false);
+  const colorModeValue = useColorModeValue(
+    "transparent-gradient-light",
+    "transparent-gradient-dark"
+  );
 
   const maxHeight = "20em";
 
@@ -18,7 +22,7 @@ function GameDescription({ game }: Props) {
         id="gameDescription"
         maxHeight={isExpanded ? "auto" : maxHeight}
         overflow={"hidden"}
-        className={isExpanded ? "" : "transparent-gradient"}
+        className={isExpanded ? "" : colorModeValue}
       >
         {parse(game.description)}
       </Box>

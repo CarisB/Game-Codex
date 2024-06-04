@@ -2,9 +2,16 @@ form {
   width: 100%;
 }
 
-.transparent-gradient {
+.transparent-gradient-dark {
   display: block;
   color: transparent;
   background: linear-gradient(to bottom, white, transparent);
+  background-clip: text;
+}
+
+.transparent-gradient-light {
+  display: block;
+  color: transparent;
+  background: linear-gradient(to bottom, black, transparent);
   background-clip: text;
 }
